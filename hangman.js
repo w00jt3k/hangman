@@ -1,9 +1,25 @@
 const Hangman = function(word, remainingGuesses) {
-    this.word = word
+    this.word = word.toLowerCase().split('')
+    this.guessedLetters = ['c', 'b', 't', 'e']
     this.remainingGuesses = remainingGuesses
 }
 
-const hangman1 = new Hangman('test', 10)
-const hangman2 = new Hangman('another', 21)
+Hangman.prototype.getPuzzle = function() {
+    let puzzle = ''
 
-console.log(hangman1, hangman2)
+    this.word.forEach(letter => {
+        if (this.guessedLetters.includes(letter) || letter === ' ') {
+            puzzle += letter
+        } else {
+            puzzle += '*'
+        }
+    })
+
+    return puzzle
+}
+
+const game1 = new Hangman('Cat', 2)
+console.log(game1.getPuzzle())
+
+const game2 = new Hangman('New Jersey', 4)
+console.log(game2.getPuzzle())
