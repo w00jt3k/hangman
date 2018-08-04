@@ -20,18 +20,3 @@ getPuzzle((error, puzzle) => {
         console.log(puzzle)
     }
 })
-
-// Making an HTTP request
-
-
-/* const request = new XMLHttpRequest()
-
-request.addEventListener('readystatechange', function(e) {
-    if (e.target.readyState === 4 && e.target.status === 200) {
-        const myCountry = JSON.parse(e.target.responseText).find(country => country.alpha2Code === 'PL')
-        console.log(myCountry.name)
-    }
-})
-
-request.open('GET', 'http://restcountries.eu/rest/v2/all')
-request.send() */
