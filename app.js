@@ -1,6 +1,6 @@
 const puzzleEl = document.querySelector('#puzzle')
 const guessesEl = document.querySelector('#guesses')
-const game1 = new Hangman('Zielona mila', 8)
+const game1 = new Hangman('Cokolwiek', 3)
 
 puzzleEl.textContent = game1.puzzle
 guessesEl.textContent = game1.statusMessage
@@ -19,7 +19,6 @@ getPuzzle((error, puzzle) => {
     } else {
         console.log(puzzle)
     }
-    
 })
 
 // Making an HTTP request

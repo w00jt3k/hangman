@@ -5,7 +5,7 @@ const getPuzzle = (callback) => {
         if (e.target.readyState === 4 && e.target.status === 200) {
             const data = JSON.parse(e.target.responseText)
             callback(undefined, data.puzzle)
-        } else  if (e.target.readyState === 4) {
+        } else if (e.target.readyState === 4) {
             callback('An error has taken place', undefined)
         }
     })
