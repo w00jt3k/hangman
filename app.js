@@ -1,20 +1,43 @@
 const puzzleEl = document.querySelector('#puzzle')
 const guessesEl = document.querySelector('#guesses')
-const game1 = new Hangman('Cokolwiek', 3)
-
-puzzleEl.textContent = game1.puzzle
-guessesEl.textContent = game1.statusMessage
+let game
 
 window.addEventListener('keypress', (e) => {
     const guess = String.fromCharCode(e.charCode)
     
-    game1.makeGuess(guess)
-    puzzleEl.textContent = game1.puzzle
-    guessesEl.textContent = game1.statusMessage
+    game.makeGuess(guess)
+    render()
 })
 
-getPuzzle('3').then((puzzle) => {
+const render = () => {
+    puzzleEl.textContent = game.puzzle
+    guessesEl.textContent = game.statusMessage
+}
+
+const startGame = async () => {
+    const puzzle = await getPuzzle('2')
+    game = new Hangman(puzzle, 5)
+    render()
+}
+
+document.querySelector('#reset').addEventListener('click', startGame)
+
+startGame()
+
+/* getPuzzle('3').then((puzzle) => {
     console.log(puzzle)
-}, (error) => {
-    console.log(`Error: ${error}`)
-})
+}).catch((err) => {
+    console.log(err)
+}) */
+
+/* fetch('http://puzzle.mead.io/puzzle', {}).then((response) => {
+    if (response.status === 200) {
+        return response.json()
+    } else {
+        throw new Error('Unable to fetch the puzzle')
+    }
+}).then((data) => {
+    console.log(data.puzzle)
+}).catch((error) => {
+    console.log(error)
+}) */
