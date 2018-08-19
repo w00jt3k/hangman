@@ -1,3 +1,6 @@
+import Hangman from './hangman'
+import getPuzzle from './requests'
+
 const puzzleEl = document.querySelector('#puzzle')
 const guessesEl = document.querySelector('#guesses')
 let game
@@ -10,8 +13,15 @@ window.addEventListener('keypress', (e) => {
 })
 
 const render = () => {
-    puzzleEl.textContent = game.puzzle
+    puzzleEl.innerHTML = ''
     guessesEl.textContent = game.statusMessage
+
+    game.puzzle.split('').forEach((letter) => {
+        const letterEl = document.createElement('span')
+
+        letterEl.textContent = letter
+        puzzleEl.appendChild(letterEl)
+    })
 }
 
 const startGame = async () => {
@@ -23,21 +33,3 @@ const startGame = async () => {
 document.querySelector('#reset').addEventListener('click', startGame)
 
 startGame()
-
-/* getPuzzle('3').then((puzzle) => {
-    console.log(puzzle)
-}).catch((err) => {
-    console.log(err)
-}) */
-
-/* fetch('http://puzzle.mead.io/puzzle', {}).then((response) => {
-    if (response.status === 200) {
-        return response.json()
-    } else {
-        throw new Error('Unable to fetch the puzzle')
-    }
-}).then((data) => {
-    console.log(data.puzzle)
-}).catch((error) => {
-    console.log(error)
-}) */
